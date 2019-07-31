@@ -25,21 +25,6 @@ pipeline {
              }    
         }
         
-         stage('save log build') {
-             steps {
-           script {
-            def logContent = Jenkins.getInstance()
-                .getItemByFullName(env.JOB_NAME)
-                .getBuildByNumber(
-                    Integer.parseInt(env.BUILD_NUMBER))
-                .logFile.text
-            // copy the log in the job's own workspace
-            writeFile file: "buildlog.txt", text: logContent
-        }
-      }
-   }
-        
-    
     }
     post {
         always {
@@ -49,6 +34,8 @@ pipeline {
               execPattern      : 'target/jacoco.exec',
               sourcePattern    : '**/src/main/java'
            ])
+            
+         sh "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log"
           
        slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
             
