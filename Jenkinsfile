@@ -34,8 +34,8 @@ pipeline {
               execPattern      : 'target/jacoco.exec',
               sourcePattern    : '**/src/main/java'
            ])
-       slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-        
+       wget -O my_build.log ${BUILD_URL}consoleText
+       slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
         }
         
         success {
