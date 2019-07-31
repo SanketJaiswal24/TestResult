@@ -35,7 +35,7 @@ pipeline {
               sourcePattern    : '**/src/main/java'
            ])
             
-        sh "${env.BUILD_URL}/consoleText"
+        sh "cat ${JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/log >> log.txt"
 
           
        slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
