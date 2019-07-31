@@ -35,11 +35,14 @@ pipeline {
               sourcePattern    : '**/src/main/java'
            ])
             
-        // sh "cat ${JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/log >> log.txt"
+        sh "cat ${JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/log > log.txt"
+        
+        sh "pwd"
+        sh "ls -la"
+
+        sh "curl -F file=@/var/lib/jenkins/jobs/TestPipeline/builds/${env.BUILD_NUMBER}/log.txt -F channels=builds -H "Authorization: Bearer xoxp-709486088868-712106001654-699955172275-a3a8e361e1ad48ca27b6307d6e097e72" https://slack.com/api/files.upload"
             
-        // sh "curl -F file=@/var/lib/jenkins/jobs/TestPipeline/builds/${env.BUILD_NUMBER}/log -F channels=builds -H "Authorization: Bearer xoxp-709486088868-712106001654-699955172275-a3a8e361e1ad48ca27b6307d6e097e72" https://slack.com/api/files.upload"
-            
-        // slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
+        slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
             
         }
         
