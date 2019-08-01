@@ -44,7 +44,7 @@ pipeline {
 
         sh '''
         curl \
-            -F token="xoxp-709486088868-712106001654-706582148801-c06ee4fe556836cff89b25bfa2cfbee3" \
+            -F token="xoxp-709486088868-712106001654-706589466929-6a34677ea555ba6fcd421d9bbec9d0f5" \
             -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt \
             -F channels="builds" \
             -F as_user=true \
