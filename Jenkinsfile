@@ -20,7 +20,7 @@ pipeline {
         }
         
          stage('Package Stage') {
-              steps {how to jacoco in jenkinsfile
+              steps {
                  sh 'mvn package'
              }    
         }
@@ -41,8 +41,6 @@ pipeline {
         sh "ls -la"
 
        //sh "curl -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt -F channels=builds -H \"Authorization: Bearer xoxp-709486088868-712106001654-706410497393-6713563aba4d11f978f4d50e364e6fc6\" https://slack.com/api/files.upload"
-
-       //
 
         sh '''
         curl \
