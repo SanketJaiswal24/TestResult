@@ -16,7 +16,7 @@ pipeline {
          stage('Clean Install Stage') {
              steps {
                  sh 'mvn clean install'
-             }      
+             }      slackSend
         }
         
          stage('Package Stage') {
@@ -44,7 +44,7 @@ pipeline {
         
         sh '''
         curl \
-            -F token="xoxp-709486088868-712106001654-711668515429-96a90f6041f25201e6ab38bd33333463" \
+            -F token="wO6mVCteVt4I6f93mZ6zLUps" \
             -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt \
             -F channels="builds" \
             -F as_user=true \
