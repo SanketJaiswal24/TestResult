@@ -22,7 +22,7 @@ pipeline {
          stage('Package Stage') {
               steps {
                  sh 'mvn package'
-             }    Jenkins: The Definitive Guide
+             }    
         }
         
     }
