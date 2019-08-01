@@ -16,7 +16,7 @@ pipeline {
          stage('Clean Install Stage') {
              steps {
                  sh 'mvn clean install'
-             }      slackSend
+             }  
         }
         
          stage('Package Stage') {
