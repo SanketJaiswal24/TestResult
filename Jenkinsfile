@@ -20,7 +20,7 @@ pipeline {
         }
         
          stage('Package Stage') {
-              steps {
+              steps {how to jacoco in jenkinsfile
                  sh 'mvn package'
              }    
         }
@@ -40,16 +40,18 @@ pipeline {
         sh "pwd"
         sh "ls -la"
 
-         sh "curl -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt -F channels=builds -H \"Authorization: Bearer xoxp-709486088868-712106001654-712661917653-51a03ec1bcfe64c1edd169cb406952d4\" https://slack.com/api/files.upload"
-        
-        // sh '''
-        // curl \
-        //     -F token="xoxp-709486088868-712106001654-712661917653-51a03ec1bcfe64c1edd169cb406952d4" \
-        //     -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt \
-        //     -F channels="builds" \
-        //     -F as_user=true \
-        //     https://slack.com/api/files.upload
-        // '''
+       //sh "curl -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt -F channels=builds -H \"Authorization: Bearer xoxp-709486088868-712106001654-706410497393-6713563aba4d11f978f4d50e364e6fc6\" https://slack.com/api/files.upload"
+
+       //
+
+        sh '''
+        curl \
+            -F token="xoxp-709486088868-712106001654-706410497393-6713563aba4d11f978f4d50e364e6fc6" \
+            -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt \
+            -F channels="builds" \
+            -F as_user=true \
+            https://slack.com/api/files.upload
+        '''
 
         slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
             
