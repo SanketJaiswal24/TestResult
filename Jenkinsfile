@@ -40,6 +40,8 @@ pipeline {
         sh "pwd"
         sh "ls -la"
 
+        // webhook toekn : - 07e81527-583c-46ab-929d-06fa38759a8e
+
        //sh "curl -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt -F channels=builds -H \"Authorization: Bearer xoxp-709486088868-712106001654-706410497393-6713563aba4d11f978f4d50e364e6fc6\" https://slack.com/api/files.upload"
 
         sh '''
