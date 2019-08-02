@@ -56,7 +56,7 @@ pipeline {
         }
         
         success {
-            echo 'I am Success'
+            echo 'I am Success Done'
         }
         
         unstable {
