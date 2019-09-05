@@ -37,13 +37,6 @@ pipeline {
             
         sh "cat ${JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/log > log.txt"
         
-        sh "pwd"
-        sh "ls -la"
-
-        // webhook toekn : - 07e81527-583c-46ab-929d-06fa38759a8e
-
-       //sh "curl -F file=@${JENKINS_HOME}/workspace/TestPipeline/log.txt -F channels=builds -H \"Authorization: Bearer xoxp-709486088868-712106001654-706410497393-6713563aba4d11f978f4d50e364e6fc6\" https://slack.com/api/files.upload"
-
         sh '''
         curl \
             -F token="xoxp-709486088868-712106001654-706589466929-6a34677ea555ba6fcd421d9bbec9d0f5" \
@@ -59,6 +52,7 @@ pipeline {
         
         success {
             echo 'I am Success Done'
+            sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker .'
         }
         
         unstable {
