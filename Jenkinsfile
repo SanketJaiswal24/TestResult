@@ -34,9 +34,11 @@ pipeline {
         }
 
         stage('Push Docker Image'){
-                 sh "docker login "
+             steps
+             {
+             sh "docker login "
+             }
             }
-   }
     
     }
     post {
