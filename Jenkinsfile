@@ -1,46 +1,42 @@
 pipeline {
     agent any
     stages {
-
+        
         stage('Compile Stage') {
              steps {
                  sh 'mvn clean compile'
              }      
         }
-        
+
         stage('Test Stage') {
              steps {
                  sh 'mvn test'
              }      
         }
         
-         stage('Clean Install Stage') {
+        stage('Clean Install Stage') {
              steps {
                  sh 'mvn clean install'
              }  
         }
         
-         stage('Package Stage') {
+        stage('Package Stage') {
               steps {
                  sh 'mvn package'
              }    
         }
 
-         stage('Build Docker Image'){
+        stage('Build Docker Image'){
              steps
              {
-         sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker1.0 .'
+        sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker1.0 .'
              }
         }
 
-         stage('Push Docker Image'){
-             steps
-             {
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-           sh "docker login -u sanketjaiswal12345 -p ${dockerHubPwd}"
-          }
-         sh 'docker push sanketjaiswal12345/spring-boot-apache-derby-docker1.0'
-             }
+        stage('Push Docker Image'){
+            withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                 sh "docker login -u sanketjaiswal12345 -p ${dockerHubPwd}"
+            }
    }
     
     }
@@ -63,6 +59,7 @@ pipeline {
             -F as_user=true \
             https://slack.com/api/files.upload
         '''
+         
 
         slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") 
             
@@ -70,7 +67,7 @@ pipeline {
         
         success {
             echo 'I am Success Done'
-           
+           sh 'docker push sanketjaiswal12345/spring-boot-apache-derby-docker1.0'
         }
         
         unstable {
