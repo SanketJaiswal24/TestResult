@@ -29,7 +29,7 @@ pipeline {
         stage('Build Docker Image'){
              steps
              {
-        sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker1.0 .'
+        sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker2.0.0 .'
              }
         }
       
