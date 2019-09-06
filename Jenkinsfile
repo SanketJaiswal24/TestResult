@@ -36,9 +36,11 @@ pipeline {
          stage('Push Docker Image'){
            steps
            {
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+       /*   withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
         sh "docker login -u sanketjaiswal12345 -p ${dockerHubPwd}"
           }
+           sh 'docker push sanketjaiswal12345/spring-boot-apache-derby-docker1.0' */
+          sh 'docker login -u sanketjaiswal12345 -p Hack@123@Dock'
            sh 'docker push sanketjaiswal12345/spring-boot-apache-derby-docker1.0'
            }
       }
