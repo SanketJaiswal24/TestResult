@@ -34,8 +34,11 @@ pipeline {
         }
 
         stage('Push Docker Image'){
-            withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+             steps
+             { 
+                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                  sh "docker login -u sanketjaiswal12345 -p ${dockerHubPwd}"
+             }
             }
    }
     
