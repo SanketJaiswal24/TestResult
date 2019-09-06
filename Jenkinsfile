@@ -32,20 +32,15 @@ pipeline {
         sh 'docker build -t sanketjaiswal12345/spring-boot-apache-derby-docker1.0 .'
              }
         }
+      
+       stage('Push image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+            } 
+        echo "Trying to Push Docker Build to DockerHub"
+    }
 
-        stage('Push Docker Image'){
-          steps
-          {
-               withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-        sh "docker login -u sanketjaiswal12345 -p ${dockerHubPwd}"
-     }
-     sh 'docker push kammana/my-app:2.0.0'
-          }
-   }
-
-
-
-    
     }
     post {
         always {
