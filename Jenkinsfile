@@ -34,11 +34,17 @@ pipeline {
         }
 
         stage('Push Docker Image'){
-             steps
-             {
-             sh "docker login "
-             }
-            }
+          steps
+          {
+               withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+        sh "docker login -u kammana -p ${dockerHubPwd}"
+     }
+     sh 'docker push kammana/my-app:2.0.0'
+          }
+   }
+
+
+
     
     }
     post {
